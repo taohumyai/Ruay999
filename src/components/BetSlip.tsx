@@ -68,8 +68,8 @@ export function BetForm({ entry, onChange, onAdd, reverseMode, onToggleReverse }
                     <button
                         onClick={onToggleReverse}
                         className={`w-full py-4 rounded-2xl border-2 text-xl font-extrabold transition-all active:scale-95 flex items-center justify-center gap-3 ${reverseMode
-                                ? 'bg-blue-600 border-blue-400 text-white'
-                                : 'bg-gray-800 border-gray-600 text-gray-300 hover:border-blue-400'
+                            ? 'bg-blue-600 border-blue-400 text-white'
+                            : 'bg-gray-800 border-gray-600 text-gray-300 hover:border-blue-400'
                             }`}
                     >
                         <span className="text-2xl">🔄</span>
@@ -131,9 +131,16 @@ export function BetForm({ entry, onChange, onAdd, reverseMode, onToggleReverse }
                 <button
                     onClick={onAdd}
                     disabled={!canAdd}
-                    className={`btn-gold w-full py-5 text-2xl ${!canAdd ? 'opacity-40 cursor-not-allowed' : ''}`}
+                    className={`btn-gold w-full py-5 text-2xl flex items-center justify-center gap-2 ${!canAdd ? 'opacity-40 cursor-not-allowed' : ''}`}
                 >
-                    ➕ เพิ่มเลขนี้{reverseMode && is2digit ? ` + ${reversed}` : ''}
+                    <span className="text-3xl font-black">+</span>
+                    <span>เพิ่มเลขนี้</span>
+                    {reverseMode && is2digit && (
+                        <>
+                            <span className="text-3xl font-black ml-1">+</span>
+                            <span>{reversed}</span>
+                        </>
+                    )}
                 </button>
             </div>
 

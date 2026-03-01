@@ -45,4 +45,5 @@ export type PopularNumber = {
     total_count: number
     total_top: number
     total_bottom: number
+    buyers: string[]
 }

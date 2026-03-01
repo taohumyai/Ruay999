@@ -23,8 +23,8 @@ export default function NavBar() {
                     <Link
                         href="/"
                         className={`px-4 py-2 rounded-xl text-lg font-bold transition-all ${pathname === '/'
-                                ? 'bg-yellow-400 text-gray-900'
-                                : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                            ? 'bg-yellow-400 text-gray-900'
+                            : 'text-gray-300 hover:text-white hover:bg-gray-800'
                             }`}
                     >
                         ✏️ ลงโพย
@@ -32,11 +32,20 @@ export default function NavBar() {
                     <Link
                         href="/dashboard"
                         className={`px-4 py-2 rounded-xl text-lg font-bold transition-all ${pathname === '/dashboard'
-                                ? 'bg-yellow-400 text-gray-900'
-                                : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                            ? 'bg-yellow-400 text-gray-900'
+                            : 'text-gray-300 hover:text-white hover:bg-gray-800'
                             }`}
                     >
                         📊 Dashboard
+                    </Link>
+                    <Link
+                        href="/admin"
+                        className={`px-4 py-2 rounded-xl text-lg font-bold transition-all ${pathname === '/admin'
+                            ? 'bg-yellow-400 text-gray-900'
+                            : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                            }`}
+                    >
+                        ⚙️ Admin
                     </Link>
                 </div>
             </div>

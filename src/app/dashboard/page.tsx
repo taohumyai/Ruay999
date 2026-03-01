@@ -315,26 +315,33 @@ export default function DashboardPage() {
                                 const barPct = Math.max(8, (p.total_count / maxCount) * 100)
                                 const totalMoney = p.total_top + p.total_bottom
                                 return (
-                                    <div key={p.number} className="flex items-center gap-3">
-                                        <span className="text-gray-500 text-sm w-5 text-right">{i + 1}</span>
-                                        <span className="text-yellow-400 font-extrabold text-xl w-12 text-center">
-                                            {p.number}
-                                        </span>
-                                        <div className="flex-1 rounded-full bg-gray-800 h-8 relative overflow-hidden">
-                                            <div
-                                                className="absolute left-0 top-0 h-full rounded-full transition-all duration-500"
-                                                style={{
-                                                    width: `${barPct}%`,
-                                                    background: 'linear-gradient(90deg, #f5c842, #e68917)',
-                                                }}
-                                            />
-                                            <span className="absolute inset-0 flex items-center px-3 text-sm font-bold text-gray-900 z-10">
-                                                {p.total_count} ราย · {totalMoney.toLocaleString()} ฿
+                                    <div key={p.number} className="flex flex-col gap-1 mb-2">
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-gray-500 text-sm w-5 text-right">{i + 1}</span>
+                                            <span className="text-yellow-400 font-extrabold text-xl w-12 text-center">
+                                                {p.number}
                                             </span>
+                                            <div className="flex-1 rounded-full bg-gray-800 h-8 relative overflow-hidden">
+                                                <div
+                                                    className="absolute left-0 top-0 h-full rounded-full transition-all duration-500"
+                                                    style={{
+                                                        width: `${barPct}%`,
+                                                        background: 'linear-gradient(90deg, #f5c842, #e68917)',
+                                                    }}
+                                                />
+                                                <span className="absolute inset-0 flex items-center px-3 text-sm font-bold text-gray-900 z-10">
+                                                    {p.total_count} ราย · {totalMoney.toLocaleString()} ฿
+                                                </span>
+                                            </div>
+                                            <div className="text-xs text-gray-500 w-12 text-right">
+                                                {p.number.length === 2 ? '2 ตัว' : '3 ตัว'}
+                                            </div>
                                         </div>
-                                        <div className="text-xs text-gray-500 w-20 text-right">
-                                            {p.number.length === 2 ? '2 ตัว' : '3 ตัว'}
-                                        </div>
+                                        {p.buyers && p.buyers.length > 0 && (
+                                            <div className="pl-[5.5rem] pr-12 text-xs text-gray-400 leading-relaxed truncate">
+                                                👤 {p.buyers.join(', ')}
+                                            </div>
+                                        )}
                                     </div>
                                 )
                             })}

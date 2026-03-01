@@ -37,12 +37,13 @@ export async function GET(req: Request) {
     if (ratesErr) return NextResponse.json({ error: ratesErr.message }, { status: 500 })
 
     // Popular numbers
-    const numberMap: Record<string, { count: number; total_top: number; total_bottom: number }> = {}
+    const numberMap: Record<string, { count: number; total_top: number; total_bottom: number; buyers: Set<string> }> = {}
     for (const bet of (bets as Bet[])) {
-        if (!numberMap[bet.number]) numberMap[bet.number] = { count: 0, total_top: 0, total_bottom: 0 }
+        if (!numberMap[bet.number]) numberMap[bet.number] = { count: 0, total_top: 0, total_bottom: 0, buyers: new Set() }
         numberMap[bet.number].count++
         numberMap[bet.number].total_top += bet.top_amount
         numberMap[bet.number].total_bottom += bet.bottom_amount
+        if (bet.buyer_name) numberMap[bet.number].buyers.add(bet.buyer_name)
     }
 
     const popular = Object.entries(numberMap)
@@ -51,6 +52,7 @@ export async function GET(req: Request) {
             total_count: v.count,
             total_top: v.total_top,
             total_bottom: v.total_bottom,
+            buyers: Array.from(v.buyers),
         }))
         .sort((a, b) => b.total_count - a.total_count)
         .slice(0, 20)
