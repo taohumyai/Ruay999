@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { calculateWinners } from '@/lib/winner'
-import type { Bet, PayoutRates } from '@/lib/types'
+import type { Bet, PayoutRates, WinnerEntry } from '@/lib/types'
 
 // GET /api/dashboard?round_id=xxx
 export async function GET(req: Request) {
@@ -56,7 +56,7 @@ export async function GET(req: Request) {
         .slice(0, 20)
 
     // Winners (only if results entered)
-    let winners = []
+    let winners: WinnerEntry[] = []
     if (round.two_tail && round.three_tail) {
         winners = calculateWinners(bets as Bet[], round.two_tail, round.three_tail, rates as PayoutRates)
     }
